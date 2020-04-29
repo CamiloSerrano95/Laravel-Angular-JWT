@@ -1,0 +1,43 @@
+<div class="mt-5">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center">
+                <h5 class="text-center">Haz parte de nosotros</h5>
+            </div>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="name">Nombres y Apellidos</label>
+                            <div class="input-group mb-2">
+                                <input type="text" id="name" class="form-control" formControlName="name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="name">Correo Electronico</label>
+                            <div class="input-group mb-2">
+                                <input type="text" id="email" class="form-control" formControlName="email">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="name">Contraseña</label>
+                            <div class="input-group mb-2">
+                                <input type="password" id="password" class="form-control" formControlName="password">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Resgistrarme!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <a class="d-flex justify-content-center" routerLink="/login">Ir al inicio</a>
+</div>
