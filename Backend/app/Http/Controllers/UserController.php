@@ -29,7 +29,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password)
         ];
 
-        $newUser = User::insert($data);
+        $new = User::insert($data);
 
         return response()->json(['success' => 1, 'status' => $new, 'msg' => 'Usuario agregado exitosamente'], 200);
     }
