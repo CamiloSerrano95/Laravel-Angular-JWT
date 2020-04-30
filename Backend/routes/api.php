@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |    });
 */
 
-Route::post('register', 'AuthenticationControllerController@register');
+Route::post('register', 'UserController@store');
 Route::post('login', 'AuthenticationController@authenticate');
 Route::post('userauth', 'AuthenticationController@getAuthenticatedUser');
 
