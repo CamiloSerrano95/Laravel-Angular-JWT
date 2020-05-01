@@ -4,6 +4,10 @@
             {{ message }}, te redireccionaremos en unos segundos
         </div>
 
+        <div *ngIf="messageError" class="alert alert-danger" role="alert">
+            {{ messageError }}
+        </div>
+
         <div class="modal-content">
             <div class="modal-header d-flex justify-content-center mt-2">
                 <h5 class="text-center">Haz parte de nosotros</h5>

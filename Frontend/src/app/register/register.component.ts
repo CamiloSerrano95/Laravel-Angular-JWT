@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +14,8 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   message:string;
+  messageError:string;
+  errors:any;
 
   constructor(
     private authService: AuthService,
@@ -24,11 +28,11 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.authService.registerUser(this.registerForm.value).subscribe(data => {
-      this.message = data.msg;
+      this.message = data['msg'];
       setTimeout(() => {
         this.router.navigate(['login']);
       }, 3000);
-    });
+    }, error => this.handleError(error.error));
   }
 
   private initForm() {
@@ -37,5 +41,10 @@ export class RegisterComponent implements OnInit {
       'email' : new FormControl('', Validators.required),
       'password' : new FormControl('', Validators.required)
     });
+  }
+
+  handleError(error){
+    this.messageError = error.message;
+    console.log(error.errors);
   }
 }
