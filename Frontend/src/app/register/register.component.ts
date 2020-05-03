@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   message:string;
   messageError:string;
-  errors:any;
+  errors:[] = [];
 
   constructor(
     private authService: AuthService,
@@ -32,7 +32,10 @@ export class RegisterComponent implements OnInit {
       setTimeout(() => {
         this.router.navigate(['login']);
       }, 3000);
-    }, error => this.handleError(error.error));
+    }, dataError => {
+      this.messageError = dataError.message;
+      
+    });
   }
 
   private initForm() {
@@ -41,10 +44,5 @@ export class RegisterComponent implements OnInit {
       'email' : new FormControl('', Validators.required),
       'password' : new FormControl('', Validators.required)
     });
-  }
-
-  handleError(error){
-    this.messageError = error.message;
-    console.log(error.errors);
   }
 }
