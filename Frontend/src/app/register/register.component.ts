@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { pipe } from 'rxjs';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -14,8 +12,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   message:string;
-  messageError:string;
-  errors:[] = [];
+  errors:any;
 
   constructor(
     private authService: AuthService,
@@ -32,9 +29,8 @@ export class RegisterComponent implements OnInit {
       setTimeout(() => {
         this.router.navigate(['login']);
       }, 3000);
-    }, dataError => {
-      this.messageError = dataError.message;
-      
+    }, dataError => {  
+      this.errors = dataError;    
     });
   }
 

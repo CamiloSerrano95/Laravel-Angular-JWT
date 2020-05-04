@@ -4,8 +4,14 @@
             {{ message }}, te redireccionaremos en unos segundos
         </div>
 
-        <div *ngIf="messageError" class="alert alert-danger" role="alert">
-            {{ messageError }}
+        <div *ngIf="errors">
+            <div class="alert alert-danger" role="alert">
+                
+                <p><strong>{{ errors.message }}</strong></p>
+                <ul *ngFor="let item of errors">
+                    <li>{{ item }}</li>
+                </ul>
+            </div>
         </div>
 
         <div class="modal-content">

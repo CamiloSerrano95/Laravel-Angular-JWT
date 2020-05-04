@@ -28,9 +28,12 @@ export class AuthService {
   isAuthenticated(): boolean {
     let user = JSON.parse(localStorage.getItem('user'));
 
-    if (user.token) {
-      return true;
+    if (user !== null) {
+      if (user.token) {
+        return true;
+      }
     }
+
     return false;
   }
 
@@ -48,6 +51,19 @@ export class AuthService {
   }
 
   handleError(error: HttpErrorResponse) {
-    return throwError(error.error);
+    const errors = [];
+
+    if (error.error) {
+      errors['message'] = error.error.message;
+      if (error.error.errors) {
+        for (const property in error.error.errors) {
+          if (error.error.errors.hasOwnProperty(property)) {
+            const propertyErrors: Array<string> = error.error.errors[property];
+            propertyErrors.forEach(error => errors.push(error));
+          }
+        }
+      }
+    }
+    return throwError(errors);
   }
 }
