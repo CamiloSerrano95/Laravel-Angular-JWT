@@ -15,7 +15,9 @@ export class AuthService {
 
   loginUser(data:any) {
     const url = `${environment.apiUrl}/login`;
-    return this.http.post(url, data);
+    return this.http.post(url, data).pipe(
+      catchError(this.handleErrorLogin)
+    );
   }
 
   registerUser(data:any) {
@@ -23,6 +25,21 @@ export class AuthService {
     return this.http.post(url, data).pipe(
       catchError(this.handleError)
     )
+  }
+
+  logoutUser() {
+    let user = JSON.parse(localStorage.getItem('user'));
+
+    let headers = new HttpHeaders(
+      {
+        'Authorization': `Bearer ${user.token}`
+      }
+    );
+
+    let options = { headers: headers };
+    const url = `${environment.apiUrl}/logout`
+
+    return this.http.post(url, null, options);
   }
 
   isAuthenticated(): boolean {
@@ -48,6 +65,14 @@ export class AuthService {
     const url = `${environment.apiUrl}/userauth`
 
     return this.http.post(url, null, options);
+  }
+
+  handleErrorLogin(error: HttpErrorResponse) {
+    let message = "";
+    if(error.error) {
+      message = error.error;
+    }
+    return throwError(message);
   }
 
   handleError(error: HttpErrorResponse) {
