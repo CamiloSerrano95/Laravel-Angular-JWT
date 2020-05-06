@@ -1,5 +1,9 @@
 <div class="mt-5">
     <div class="modal-dialog" role="document">
+        
+        <div *ngIf="errors" class="alert alert-danger" role="alert">
+            <p><strong>{{ errors }}</strong></p>
+        </div>
         <div class="modal-content">
             <div class="modal-header d-flex justify-content-center">
                 <h5 class="text-center">Inicio Session</h5>
