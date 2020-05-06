@@ -19,9 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register', 'UserController@store');
 Route::post('login', 'AuthenticationController@authenticate');
-Route::post('userauth', 'AuthenticationController@getAuthenticatedUser');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
+
+    Route::post('userauth', 'AuthenticationController@getAuthenticatedUser');
+    Route::post('logout', 'AuthenticationController@logout');
 
     /* Routes for users  */
     Route::get('user/all', 'UserController@all');

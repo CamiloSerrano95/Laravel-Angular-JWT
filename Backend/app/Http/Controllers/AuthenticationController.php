@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use JWTAuth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthenticationController extends Controller
@@ -13,7 +14,7 @@ class AuthenticationController extends Controller
 
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 400);
+                return response()->json(['error' => 'Invalid credentials'], 400);
             }
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
@@ -36,5 +37,11 @@ class AuthenticationController extends Controller
         }
         
         return response()->json(compact('user'));
+    }
+
+    public function logout() {
+        auth()->logout();
+
+        return response()->json(['message' => 'Successfully logged out'], 200);
     }
 }
