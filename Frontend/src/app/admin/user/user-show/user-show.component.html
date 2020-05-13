@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+<div class="container mt-5 card text-center" style="width: 35rem;">
+    <div class="card-header">
+        <span style="font-size: 3em; ">
+            <i class="fas fa-user"></i> Usuario
+        </span>
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>Nombres: {{ user.name }}</p>
+            <p>Correo Electronico: {{ user.email }}<p>
+        </blockquote>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-md-12 mt-1">
+                <a routerLink="/admin" class="btn btn-sm btn-danger">Inicio</a>
+            </div>
+        </div>
+    </div>
+</div>
