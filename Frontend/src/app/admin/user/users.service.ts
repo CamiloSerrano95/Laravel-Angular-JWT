@@ -27,6 +27,16 @@ export class UsersService {
     return this.http.post(url, data, this.getHeader());
   }
 
+  userDelete(id:string) {
+    const url = `${environment.apiUrl}/user/delete/${id}`;
+    return this.http.get(url, this.getHeader());
+  }
+
+  userUpdate(id:string, data:any) {
+    const url = `${environment.apiUrl}/user/update/${id}`;
+    return this.http.post(url, data, this.getHeader());
+  }
+
   getHeader() {
     let user = JSON.parse(localStorage.getItem('user'));
 

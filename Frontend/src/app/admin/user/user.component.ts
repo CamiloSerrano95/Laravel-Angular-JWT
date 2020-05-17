@@ -9,6 +9,7 @@ import { UsersService } from './users.service';
 export class UserComponent implements OnInit {
 
   users:any;
+  message:string;
 
   constructor(private userService: UsersService) { }
 
@@ -20,5 +21,12 @@ export class UserComponent implements OnInit {
     this.userService.getAllUsers().subscribe(data => {
       this.users = data['data'];
     });
+  }
+
+  delete(id:string) {
+    this.userService.userDelete(id).subscribe(data => {
+      this.getAll();
+      this.message = data['msg'];
+    })
   }
 }

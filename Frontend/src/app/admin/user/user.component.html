@@ -5,7 +5,11 @@
         <div class="col-md-12">
             <div class="mt-4">
                 <a routerLink="user/manager" class="btn btn-sm btn-outline-success mb-3"><i class="fas fa-user-graduate"></i> Crear Usuario</a>
-            
+
+                <div *ngIf="message" class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+
                 <div class="table-responsive-md text-center">
                     <table class="table">
                         <thead class="thead-dark">
@@ -29,14 +33,14 @@
                                     </a>
                                 </td>
                                 <td width="10px">
-                                    <a class="btn btn-sm btn-link">
+                                    <a [routerLink]="['user/manager']" [queryParams]="{ id: user.id}" class="btn btn-sm btn-link">
                                         <span style="font-size: 1em; color: dodgerblue;">
                                             <i class="fas fa-user-edit"></i>
                                         </span>
                                     </a>
                                 </td>
                                 <td width="10px">
-                                    <button class="btn btn-sm btn-link">
+                                    <button class="btn btn-sm btn-link" (click)="delete(user.id)">
                                         <span style="font-size: 1em; color: tomato;">
                                             <i class="fas fa-trash"></i>
                                         </span>

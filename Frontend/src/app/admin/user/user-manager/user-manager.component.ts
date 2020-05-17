@@ -22,16 +22,34 @@ export class UserManagerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.id = params.id;
+      if (this.id) {
+        this.editMode = true;
+        this.fillForm();
+      }
+    });
     this.initForm();
   }
 
   onSubmit() {
-    this.userService.newUser(this.userForm.value).subscribe(data => {
-      this.msg = data['msg'];
-      setTimeout(() => {
-        this.router.navigate(['/admin']);
-      }, 3000);
-    })
+    if (this.id) {
+      this.userService.userUpdate(this.id, this.userForm.value).subscribe(data => {
+        this.msg = data['msg'];
+        setTimeout(() => {
+          this.editMode = false;
+          this.onCancel();
+        }, 3000);
+        
+      })
+    } else {
+      this.userService.newUser(this.userForm.value).subscribe(data => {
+        this.msg = data['msg'];
+        setTimeout(() => {
+          this.router.navigate(['/admin']);
+        }, 3000);
+      })
+    }
   }
 
   private initForm() {
@@ -40,6 +58,15 @@ export class UserManagerComponent implements OnInit {
       'email' : new FormControl('', Validators.required),
       'password' : new FormControl('', Validators.required)
     });
+  }
+
+  private fillForm() {
+    this.userService.getUserById(this.id).subscribe(data => {
+      this.userForm = new FormGroup({
+        'name' : new FormControl(data['data'].name, Validators.required),
+        'email' : new FormControl(data['data'].email, Validators.required)
+      });
+    }) 
   }
 
   onCancel() {
