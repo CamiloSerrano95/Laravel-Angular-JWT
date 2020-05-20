@@ -31,4 +31,11 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user/getById/{id}', 'UserController@getById');
     Route::post('user/update/{id}', 'UserController@update');
     Route::get('user/delete/{id}', 'UserController@delete');
+
+    /* Routes for clients  */
+    Route::get('client/all', 'ClientController@all');
+    Route::post('client/store', 'ClientController@store');
+    Route::get('client/getById/{id}', 'ClientController@getById');
+    Route::post('client/update/{id}', 'ClientController@update');
+    Route::get('client/delete/{id}', 'ClientController@delete');
 });
