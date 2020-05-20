@@ -8,7 +8,9 @@ const appRoutes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
-    {path: 'admin', canActivate: [AuthGuard], loadChildren: () => import('src/app/admin/admin.module').then(m => m.AdminModule)}
+    {path: 'admin', canActivate: [AuthGuard], loadChildren: () => import('src/app/admin/admin.module').then(m => m.AdminModule)},
+    {path: 'client', canActivate: [AuthGuard], loadChildren: () => import('src/app/client/client.module').then(m => m.ClientModule)}
+
 ];
 
 @NgModule({
@@ -16,6 +18,4 @@ const appRoutes: Routes = [
     exports: [RouterModule]
 })
 
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule {}
