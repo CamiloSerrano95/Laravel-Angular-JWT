@@ -26,7 +26,8 @@ class UserController extends Controller
         $data = [
             'name'     => $request->name,
             'email'    => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'role'     => $request->role
         ];
 
         $new = User::insert($data);
@@ -49,7 +50,8 @@ class UserController extends Controller
 
         $data = [
             'name'  => $request->name,
-            'email' => $request->email
+            'email' => $request->email,
+            'role'  => $request->role
         ];
 
         $update = User::find($id)->update($data);
