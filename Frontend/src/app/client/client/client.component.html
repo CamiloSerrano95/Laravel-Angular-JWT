@@ -1,1 +1,62 @@
-sksjkskjsksjksj
+<app-header></app-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mt-4">
+                <a routerLink="client/manager" class="btn btn-sm btn-outline-success mb-3"><i class="fas fa-user-graduate"></i> Crear Cliente</a>
+
+                <div *ngIf="message" class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+
+                <div class="table-responsive-md text-center">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombres Y Apellidos</th>
+                                <th scope="col">Identificacion</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Direccion</th>
+                                <th scope="col">Correo Electronico</th>
+                                <th scope="col" colspan="3"><i class="fas fa-cog fa-spin"></i> Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let client of clients">
+                                <th>{{ client.id }}</th>
+                                <td>{{ client.names }}</td>
+                                <td>{{ client.identification }}</td>
+                                <td>{{ client.telephone }}</td>
+                                <td>{{ client.address }}</td>
+                                <td>{{ client.email }}</td>
+                                <td width="10px">
+                                    <a [routerLink]="['client/', client.id]" class="btn btn-sm btn-link">
+                                        <span style="font-size: 1em; color: limegreen;">
+                                            <i class="far fa-eye"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                                <td width="10px">
+                                    <a [routerLink]="['client/manager']" [queryParams]="{ id: client.id}" class="btn btn-sm btn-link">
+                                        <span style="font-size: 1em; color: dodgerblue;">
+                                            <i class="fas fa-user-edit"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                                <td width="10px">
+                                    <button class="btn btn-sm btn-link" (click)="delete(client.id)">
+                                        <span style="font-size: 1em; color: tomato;">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

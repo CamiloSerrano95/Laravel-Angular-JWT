@@ -1,0 +1,92 @@
+<app-header></app-header>
+
+<div class="card mt-5 container" style="width: 19rem;">
+
+    <div class="card-body text-center ">
+        <div *ngIf="msg" class="alert alert-success" role="alert">
+            {{ msg }}
+        </div>
+
+        <h5 class="card-title">Guardar Cliente</h5>
+        <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="name">Nombres Y Apellidos</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user-circle" style="color: Dodgerblue;"></i>
+                            </div>
+                        </div>
+                        <input type="text" id="names" class="form-control" formControlName="names">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="name">Identificacion</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user-circle" style="color: Dodgerblue;"></i>
+                            </div>
+                        </div>
+                        <input type="text" id="identification" class="form-control" formControlName="identification">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="name">Telefono</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user-circle" style="color: Dodgerblue;"></i>
+                            </div>
+                        </div>
+                        <input type="text" id="telephone" class="form-control" formControlName="telephone">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="name">Direccion</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user-circle" style="color: Dodgerblue;"></i>
+                            </div>
+                        </div>
+                        <input type="text" id="address" class="form-control" formControlName="address">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="name">Correo Electronico</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user-circle" style="color: Dodgerblue;"></i>
+                            </div>
+                        </div>
+                        <input type="text" id="email" class="form-control" formControlName="email">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer text-muted justify-content-center">
+                <h6 class="card-subtitle mb-2 text-center text-muted">Opciones</h6>
+                <div class="row mt-1">
+                    <div class="col-md-12">
+                        <button class="btn btn-success" [disabled]="!clientForm.valid">
+                            <i class="fas fa-check-circle"></i> {{ editMode ? 'Update':'Add' }}
+                        </button>
+                        <button type="button" class="btn btn-danger ml-1" (click)="onCancel()">
+                            <i class="fas fa-times-circle"></i> Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
