@@ -23,8 +23,8 @@ class ClientController extends Controller
     public function store(CreateClientRequest $request) {
 
         $data = [
-            'names'          => $request->name, 
-            'identification' => $request->identificatio, 
+            'names'          => $request->names, 
+            'identification' => $request->identification, 
             'telephone'      => $request->telephone,
             'address'        => $request->address,
             'email'          => $request->email 
@@ -49,8 +49,8 @@ class ClientController extends Controller
     public function update($id, UpdateClientRequest $request) {
 
         $data = [
-            'names'          => $request->name, 
-            'identification' => $request->identificatio, 
+            'names'          => $request->names, 
+            'identification' => $request->identification, 
             'telephone'      => $request->telephone,
             'address'        => $request->address,
             'email'          => $request->email 
