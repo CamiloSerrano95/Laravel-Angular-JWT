@@ -25,17 +25,28 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('userauth', 'AuthenticationController@getAuthenticatedUser');
     Route::post('logout', 'AuthenticationController@logout');
 
-    /* Routes for users  */
-    Route::get('user/all', 'UserController@all');
-    Route::post('user/store', 'UserController@store');
-    Route::get('user/getById/{id}', 'UserController@getById');
-    Route::post('user/update/{id}', 'UserController@update');
-    Route::get('user/delete/{id}', 'UserController@delete');
+    Route::group(['middleware' => ['role:admin']], function() {
+        /* Routes for users  */
+        Route::get('user/all', 'UserController@all');
+        Route::post('user/store', 'UserController@store');
+        Route::get('user/getById/{id}', 'UserController@getById');
+        Route::post('user/update/{id}', 'UserController@update');
+        Route::get('user/delete/{id}', 'UserController@delete');
 
-    /* Routes for clients  */
-    Route::get('client/all', 'ClientController@all');
-    Route::post('client/store', 'ClientController@store');
-    Route::get('client/getById/{id}', 'ClientController@getById');
-    Route::post('client/update/{id}', 'ClientController@update');
-    Route::get('client/delete/{id}', 'ClientController@delete');
+        /* Routes for clients  */
+        Route::get('client/all', 'ClientController@all');
+        Route::post('client/store', 'ClientController@store');
+        Route::get('client/getById/{id}', 'ClientController@getById');
+        Route::post('client/update/{id}', 'ClientController@update');
+        Route::get('client/delete/{id}', 'ClientController@delete');
+    });
+
+    Route::group(['middleware' => ['role:seller']], function() {
+        /* Routes for clients  */
+        Route::get('client/all', 'ClientController@all');
+        Route::post('client/store', 'ClientController@store');
+        Route::get('client/getById/{id}', 'ClientController@getById');
+        Route::post('client/update/{id}', 'ClientController@update');
+        Route::get('client/delete/{id}', 'ClientController@delete');
+    });
 });
