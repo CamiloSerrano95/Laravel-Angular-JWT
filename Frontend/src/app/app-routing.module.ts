@@ -9,7 +9,7 @@ const appRoutes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'admin', canActivate: [AuthGuard], loadChildren: () => import('src/app/admin/admin.module').then(m => m.AdminModule)},
-    {path: 'client', canActivate: [AuthGuard], loadChildren: () => import('src/app/client/client.module').then(m => m.ClientModule)}
+    {path: 'client', canActivate: [AuthGuard], data:{expectedRole: 'seller'}, loadChildren: () => import('src/app/client/client.module').then(m => m.ClientModule)}
 
 ];
 
