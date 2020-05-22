@@ -41,12 +41,11 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::get('client/delete/{id}', 'ClientController@delete');
     });
 
-    Route::group(['middleware' => ['role:seller']], function() {
-        /* Routes for clients  */
-        Route::get('client/all', 'ClientController@all');
-        Route::post('client/store', 'ClientController@store');
-        Route::get('client/getById/{id}', 'ClientController@getById');
-        Route::post('client/update/{id}', 'ClientController@update');
-        Route::get('client/delete/{id}', 'ClientController@delete');
-    });
+   
+    /* Routes for clients  */
+    Route::get('client/all', 'ClientController@all');
+    Route::post('client/store', 'ClientController@store');
+    Route::get('client/getById/{id}', 'ClientController@getById');
+    Route::post('client/update/{id}', 'ClientController@update');
+    Route::get('client/delete/{id}', 'ClientController@delete');
 });
