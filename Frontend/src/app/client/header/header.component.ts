@@ -8,13 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  role:string;
+  user:any = JSON.parse(localStorage.getItem('user'));
+  data:[] = this.user.user;
   constructor( 
     private authService: AuthService,
     private router: Router
     ) { }
 
   ngOnInit(): void {
+    this.role = this.user.user['user'].role;
   }
 
   logout() {
